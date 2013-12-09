@@ -1,4 +1,5 @@
-var props;
+var props,
+    cache = {};
 
 function venfix(property){
     if(cache[property]){
@@ -6,18 +7,21 @@ function venfix(property){
     }
 
     if(!props){
-        props = Object.keys(document.body);
+        props = Object.keys(document.body.style);
     }
 
-    if(property in document.body){
+    if(property in document.body.style){
         return property;
     }
 
     for(var i = 0; i < props.length; i++) {
-        if(props[i].match(new RegExp(property, 'i'))){
+        if(props[i].match(new RegExp('(' + venfix.prefixes.join('|') + ')'+property, 'i'))){
             return cache[property] = props[i];
         }
     }
 }
+
+// Add extensibility
+venfix.prefixes = ['webkit', 'moz', 'ms', 'o'];
 
 module.exports = venfix;

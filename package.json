@@ -1,0 +1,17 @@
+{
+  "name": "venfix",
+  "version": "0.0.0",
+  "description": "",
+  "main": "venfix.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD",
+  "devDependencies": {
+    "grape": "~0.1.7"
+  }
+}
