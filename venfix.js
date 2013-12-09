@@ -1,22 +1,30 @@
-var props,
-    cache = {};
+var cache = {};
 
-function venfix(property){
-    if(cache[property]){
+function venfix(property, target){
+    var bodyStyle = document.body.style;
+
+    if(!target && cache[property]){
         return cache[property];
     }
 
-    if(!props){
-        props = Object.keys(document.body.style);
+    target = target || bodyStyle;
+
+    var props = [];
+
+    for(var key in target){
+        props.push(key);
     }
 
-    if(property in document.body.style){
+    if(property in target){
         return property;
     }
 
     for(var i = 0; i < props.length; i++) {
         if(props[i].match(new RegExp('(' + venfix.prefixes.join('|') + ')'+property, 'i'))){
-            return cache[property] = props[i];
+            if(target === bodyStyle){
+                cache[property] = props[i]
+            }
+            return props[i];
         }
     }
 }

@@ -24,4 +24,10 @@ window.onload = function(){
         t.equal(venfix('wat'), undefined);
     });
 
+    test('js property', function(t){
+        t.plan(1);
+
+        t.equal(venfix('requestFileSystem', window), 'webkitRequestFileSystem');
+    });
+
 };
