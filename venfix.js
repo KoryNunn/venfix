@@ -19,8 +19,10 @@ function venfix(property, target){
         return property;
     }
 
+    var propertyRegex = new RegExp('^(' + venfix.prefixes.join('|') + ')' + property + '$', 'i');
+
     for(var i = 0; i < props.length; i++) {
-        if(props[i].match(new RegExp('(' + venfix.prefixes.join('|') + ')'+property, 'i'))){
+        if(props[i].match(propertyRegex)){
             if(target === bodyStyle){
                 cache[property] = props[i]
             }
