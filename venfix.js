@@ -12,6 +12,7 @@ function venfix(property, target){
     var props = [];
 
     for(var key in target){
+        cache[key] = key;
         props.push(key);
     }
 
