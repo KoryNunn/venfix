@@ -1,7 +1,7 @@
 {
   "name": "venfix",
   "version": "1.0.0",
-  "description": "",
+  "description": "## Wat",
   "main": "venfix.js",
   "directories": {
     "test": "test"
@@ -13,5 +13,13 @@
   "license": "BSD",
   "devDependencies": {
     "grape": "~0.1.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KoryNunn/venfix.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KoryNunn/venfix/issues"
+  },
+  "homepage": "https://github.com/KoryNunn/venfix"
 }

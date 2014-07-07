@@ -1,8 +1,6 @@
-## venfix
+# venfix
 
-## Wat
-
-venfix will give you the right vendor prefixed css name for a property you pass it.
+return the appropriate vendor prefixed css name for a property you pass it.
 
 ## Usage
 
