@@ -4,10 +4,21 @@ var cache = {},
 function getBodyStyleProperties(){
     if(!bodyStyle){
         var values = {},
+            shortcuts = {},
             items = document.defaultView.getComputedStyle(document.body);
 
         for(var i = 0; i < items.length; i++){
             values[items[i]] = null;
+
+            // This is kinda dodgy but it works.
+            baseName = items[i].match(/^(\w+)-.*$/);
+            if(baseName){
+                if(shortcuts[baseName[1]]){
+                    values[baseName[1]] = null;
+                }else{
+                    shortcuts[baseName[1]] = true;
+                }
+            }
         }
         bodyStyle = values;
     }
@@ -34,7 +45,7 @@ function venfix(property, target){
         return property;
     }
 
-    var propertyRegex = new RegExp('^(' + venfix.prefixes.join('|') + ')' + property + '$', 'i');
+    var propertyRegex = new RegExp('^-(' + venfix.prefixes.join('|') + ')-' + property + '$', 'i');
 
     for(var i = 0; i < props.length; i++) {
         if(props[i].match(propertyRegex)){
