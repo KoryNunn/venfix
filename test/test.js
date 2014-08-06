@@ -15,7 +15,7 @@ window.onload = function(){
     test('vender prefixed property', function(t){
         t.plan(1);
 
-        t.equal(venfix('transform'), 'webkitTransform');
+        t.equal(venfix('transform'), '-webkit-transform');
     });
 
     test('non-existant property', function(t){

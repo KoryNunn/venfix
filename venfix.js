@@ -1,7 +1,7 @@
 var cache = {};
 
 function venfix(property, target){
-    var bodyStyle = document.body.style;
+    var bodyStyle = document.defaultView.getComputedStyle(document.body);
 
     if(!target && cache[property]){
         return cache[property];
