@@ -1,7 +1,21 @@
-var cache = {};
+var cache = {},
+    bodyStyle;
+
+function getBodyStyleProperties(){
+    if(!bodyStyle){
+        var values = {},
+            items = document.defaultView.getComputedStyle(document.body);
+
+        for(var i = 0; i < items.length; i++){
+            values[items[i]] = null;
+        }
+        bodyStyle = values;
+    }
+    return bodyStyle;
+}
 
 function venfix(property, target){
-    var bodyStyle = document.defaultView.getComputedStyle(document.body);
+    var bodyStyle = getBodyStyleProperties();
 
     if(!target && cache[property]){
         return cache[property];
