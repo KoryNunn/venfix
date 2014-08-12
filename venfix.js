@@ -3,27 +3,22 @@ var cache = {},
 
 window.addEventListener('load', getBodyStyleProperties);
 function getBodyStyleProperties(){
-    if(!bodyStyle){
-        var values = {},
-            shortcuts = {},
-            items = document.defaultView.getComputedStyle(document.body);
+    var shortcuts = {},
+        items = document.defaultView.getComputedStyle(document.body);
 
-        for(var i = 0; i < items.length; i++){
-            values[items[i]] = null;
+    for(var i = 0; i < items.length; i++){
+        bodyStyle[items[i]] = null;
 
-            // This is kinda dodgy but it works.
-            baseName = items[i].match(/^(\w+)-.*$/);
-            if(baseName){
-                if(shortcuts[baseName[1]]){
-                    values[baseName[1]] = null;
-                }else{
-                    shortcuts[baseName[1]] = true;
-                }
+        // This is kinda dodgy but it works.
+        baseName = items[i].match(/^(\w+)-.*$/);
+        if(baseName){
+            if(shortcuts[baseName[1]]){
+                bodyStyle[baseName[1]] = null;
+            }else{
+                shortcuts[baseName[1]] = true;
             }
         }
-        bodyStyle = values;
     }
-    return bodyStyle;
 }
 
 function venfix(property, target){
