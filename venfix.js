@@ -1,23 +1,12 @@
 var cache = {},
-    bodyStyle;
+    bodyStyle = {};
 
+window.addEventListener('load', getBodyStyleProperties);
 function getBodyStyleProperties(){
     if(!bodyStyle){
         var values = {},
             shortcuts = {},
-            items = document.defaultView.getComputedStyle(document.body) && null;
-
-        // If the document isn't loaded yet, some browser can use the below.
-        if(!items && document.body.style){
-            items = Object.keys(document.body.style);
-
-            for(var i = 0; i < items.length; i++){
-                items[i] = items[i].replace(/([A-Z])/g,'-$1').toLowerCase();
-                if(items[i].match(new RegExp('^(' + venfix.prefixes.join('|') + ')-.*$'))){
-                    items[i] = '-' + items[i];
-                }
-            }
-        }
+            items = document.defaultView.getComputedStyle(document.body);
 
         for(var i = 0; i < items.length; i++){
             values[items[i]] = null;
@@ -38,8 +27,6 @@ function getBodyStyleProperties(){
 }
 
 function venfix(property, target){
-    var bodyStyle = getBodyStyleProperties();
-
     if(!target && cache[property]){
         return cache[property];
     }
