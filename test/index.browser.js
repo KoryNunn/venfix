@@ -1,77 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/home/kory/dev/venfix/test/test.js":[function(require,module,exports){
-var test = require('grape'),
-    venfix = require('../');
-
-window.onload = function(){
-
-    test('default property', function(t){
-        t.plan(1);
-
-        t.equal(venfix('border'), 'border');
-    });
-
-    /*
-        NOTE: This test only works in a webkit-prefixed environment
-    */
-    test('vender prefixed property', function(t){
-        t.plan(1);
-
-        t.equal(venfix('transform'), '-webkit-transform');
-    });
-
-    test('non-existant property', function(t){
-        t.plan(1);
-
-        t.equal(venfix('wat'), undefined);
-    });
-
-    test('js property', function(t){
-        t.plan(1);
-
-        t.equal(venfix('requestFileSystem', window), 'webkitRequestFileSystem');
-    });
-
-};
-},{"../":"/home/kory/dev/venfix/venfix.js","grape":"/usr/lib/node_modules/grape/grape.js"}],"/home/kory/dev/venfix/venfix.js":[function(require,module,exports){
-var cache = {};
-
-function venfix(property, target){
-    var bodyStyle = document.defaultView.getComputedStyle(document.body);
-
-    if(!target && cache[property]){
-        return cache[property];
-    }
-
-    target = target || bodyStyle;
-
-    var props = [];
-
-    for(var key in target){
-        cache[key] = key;
-        props.push(key);
-    }
-
-    if(property in target){
-        return property;
-    }
-
-    var propertyRegex = new RegExp('^(' + venfix.prefixes.join('|') + ')' + property + '$', 'i');
-
-    for(var i = 0; i < props.length; i++) {
-        if(props[i].match(propertyRegex)){
-            if(target === bodyStyle){
-                cache[property] = props[i]
-            }
-            return props[i];
-        }
-    }
-}
-
-// Add extensibility
-venfix.prefixes = ['webkit', 'moz', 'ms', 'o'];
-
-module.exports = venfix;
-},{}],"/usr/lib/node_modules/grape/grape.js":[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/home/kory/dev/venfix/node_modules/grape/grape.js":[function(require,module,exports){
 (function (process){
 var EventEmitter = require('events').EventEmitter,
     deepEqual = require('deep-equal'),
@@ -350,9 +277,7 @@ function instantiate(){
 
         if(!grape.silent){
             console.log(results[0]);
-            if(process && process.exit){
-                process.exit(results[1]);
-            }
+            process.exit(results[1]);
         }
     }
 
@@ -402,7 +327,7 @@ function instantiate(){
 module.exports = instantiate();
 
 }).call(this,require('_process'))
-},{"./results":"/usr/lib/node_modules/grape/results.js","_process":"/usr/lib/node_modules/watchify/node_modules/browserify/node_modules/process/browser.js","deep-equal":"/usr/lib/node_modules/grape/node_modules/deep-equal/index.js","events":"/usr/lib/node_modules/watchify/node_modules/browserify/node_modules/events/events.js"}],"/usr/lib/node_modules/grape/node_modules/deep-equal/index.js":[function(require,module,exports){
+},{"./results":"/home/kory/dev/venfix/node_modules/grape/results.js","_process":"/usr/lib/node_modules/watchify/node_modules/browserify/node_modules/process/browser.js","deep-equal":"/home/kory/dev/venfix/node_modules/grape/node_modules/deep-equal/index.js","events":"/usr/lib/node_modules/watchify/node_modules/browserify/node_modules/events/events.js"}],"/home/kory/dev/venfix/node_modules/grape/node_modules/deep-equal/index.js":[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -479,7 +404,7 @@ function objEquiv(a, b, opts) {
   return true;
 }
 
-},{"./lib/is_arguments.js":"/usr/lib/node_modules/grape/node_modules/deep-equal/lib/is_arguments.js","./lib/keys.js":"/usr/lib/node_modules/grape/node_modules/deep-equal/lib/keys.js"}],"/usr/lib/node_modules/grape/node_modules/deep-equal/lib/is_arguments.js":[function(require,module,exports){
+},{"./lib/is_arguments.js":"/home/kory/dev/venfix/node_modules/grape/node_modules/deep-equal/lib/is_arguments.js","./lib/keys.js":"/home/kory/dev/venfix/node_modules/grape/node_modules/deep-equal/lib/keys.js"}],"/home/kory/dev/venfix/node_modules/grape/node_modules/deep-equal/lib/is_arguments.js":[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -501,7 +426,7 @@ function unsupported(object){
     false;
 };
 
-},{}],"/usr/lib/node_modules/grape/node_modules/deep-equal/lib/keys.js":[function(require,module,exports){
+},{}],"/home/kory/dev/venfix/node_modules/grape/node_modules/deep-equal/lib/keys.js":[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -512,7 +437,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],"/usr/lib/node_modules/grape/results.js":[function(require,module,exports){
+},{}],"/home/kory/dev/venfix/node_modules/grape/results.js":[function(require,module,exports){
 
 // Taken from https://github.com/substack/tape/blob/master/lib/results.js
 
@@ -608,6 +533,116 @@ function encodeResults(results){
 }
 
 module.exports = encodeResults;
+},{}],"/home/kory/dev/venfix/test/index.js":[function(require,module,exports){
+var test = require('grape'),
+    venfix = require('../');
+
+window.onload = function(){
+
+    test('default property', function(t){
+        t.plan(1);
+
+        t.equal(venfix('border'), 'border');
+    });
+
+    /*
+        NOTE: This test only works in a webkit-prefixed environment
+    */
+    test('vender prefixed property', function(t){
+        t.plan(1);
+
+        t.equal(venfix('transform'), '-webkit-transform');
+    });
+
+    test('non-existant property', function(t){
+        t.plan(1);
+
+        t.equal(venfix('wat'), undefined);
+    });
+
+    test('js property', function(t){
+        t.plan(1);
+
+        t.equal(venfix('requestFileSystem', window), 'webkitRequestFileSystem');
+    });
+
+};
+},{"../":"/home/kory/dev/venfix/venfix.js","grape":"/home/kory/dev/venfix/node_modules/grape/grape.js"}],"/home/kory/dev/venfix/venfix.js":[function(require,module,exports){
+var cache = {},
+    bodyStyle;
+
+function getBodyStyleProperties(){
+    if(!bodyStyle){
+        var values = {},
+            shortcuts = {},
+            items = document.defaultView.getComputedStyle(document.body) && null;
+
+        // If the document isn't loaded yet, some browser can use the below.
+        if(!items && document.body.style){
+            items = Object.keys(document.body.style);
+
+            for(var i = 0; i < items.length; i++){
+                items[i] = items[i].replace(/([A-Z])/g,'-$1').toLowerCase();
+                if(items[i].match(new RegExp('^(' + venfix.prefixes.join('|') + ')-.*$'))){
+                    items[i] = '-' + items[i];
+                }
+            }
+        }
+
+        for(var i = 0; i < items.length; i++){
+            values[items[i]] = null;
+
+            // This is kinda dodgy but it works.
+            baseName = items[i].match(/^(\w+)-.*$/);
+            if(baseName){
+                if(shortcuts[baseName[1]]){
+                    values[baseName[1]] = null;
+                }else{
+                    shortcuts[baseName[1]] = true;
+                }
+            }
+        }
+        bodyStyle = values;
+    }
+    return bodyStyle;
+}
+
+function venfix(property, target){
+    var bodyStyle = getBodyStyleProperties();
+
+    if(!target && cache[property]){
+        return cache[property];
+    }
+
+    target = target || bodyStyle;
+
+    var props = [];
+
+    for(var key in target){
+        cache[key] = key;
+        props.push(key);
+    }
+
+    if(property in target){
+        return property;
+    }
+
+    var propertyRegex = new RegExp('^-(' + venfix.prefixes.join('|') + ')-' + property + '$', 'i');
+
+    for(var i = 0; i < props.length; i++) {
+        if(props[i].match(propertyRegex)){
+            if(target === bodyStyle){
+                cache[property] = props[i]
+            }
+            return props[i];
+        }
+    }
+}
+
+// Add extensibility
+venfix.prefixes = ['webkit', 'moz', 'ms', 'o'];
+
+module.exports = venfix;
 },{}],"/usr/lib/node_modules/watchify/node_modules/browserify/node_modules/events/events.js":[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -978,4 +1013,4 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}]},{},["/home/kory/dev/venfix/test/test.js"]);
+},{}]},{},["/home/kory/dev/venfix/test/index.js"]);
