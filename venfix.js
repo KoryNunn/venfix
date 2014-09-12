@@ -1,7 +1,10 @@
 var cache = {},
     bodyStyle = {};
 
-window.addEventListener('load', getBodyStyleProperties);
+if(typeof window !== 'undefined'){
+    window.addEventListener('load', getBodyStyleProperties);
+}
+
 function getBodyStyleProperties(){
     var shortcuts = {},
         items = document.defaultView.getComputedStyle(document.body);
