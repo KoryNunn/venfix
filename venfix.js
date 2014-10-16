@@ -2,7 +2,11 @@ var cache = {},
     bodyStyle = {};
 
 if(typeof window !== 'undefined'){
-    window.addEventListener('load', getBodyStyleProperties);
+    if(window.document.body){
+        getBodyStyleProperties();
+    }else{
+        window.addEventListener('load', getBodyStyleProperties);
+    }
 }
 
 function getBodyStyleProperties(){
