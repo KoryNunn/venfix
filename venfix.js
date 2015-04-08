@@ -46,14 +46,16 @@ function venfix(property, target){
         return property;
     }
 
-    var propertyRegex = new RegExp('^-(' + venfix.prefixes.join('|') + ')-' + property + '$', 'i');
+    var propertyRegex = new RegExp('^(-(?:' + venfix.prefixes.join('|') + ')-)' + property + '(?:$|-)', 'i');
 
     for(var i = 0; i < props.length; i++) {
-        if(props[i].match(propertyRegex)){
+        var match = props[i].match(propertyRegex);
+        if(match){
+            var result = match[1] + property;
             if(target === bodyStyle){
-                cache[property] = props[i]
+                cache[property] = result
             }
-            return props[i];
+            return result;
         }
     }
 
