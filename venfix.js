@@ -56,6 +56,8 @@ function venfix(property, target){
             return props[i];
         }
     }
+
+    return property;
 }
 
 // Add extensibility
